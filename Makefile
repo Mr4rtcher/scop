@@ -1,21 +1,9 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jabilbo <jabilbo@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/17 11:13:44 by jabilbo           #+#    #+#              #
-#    Updated: 2022/01/17 11:13:46 by jabilbo          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = scop
 
 DEPS = *.h
 DEPSDIR = includes
 SRC = main.c
-SRCDIR = srcs
+SRCDIR = src
 OBJ = $(SRC:.c=.o)
 CC = /usr/bin/gcc
 CCFLAGS = -Wall -Wextra -Werror
@@ -27,7 +15,7 @@ LIBDIR = $(SRCDIR)/libft
 all: $(NAME)
 $(NAME): $(OBJ)
 	make -C $(LIBDIR)
-	$(CC) $(CCFLAGS)  $(DEBUG) srcs/libft/libft.a  -o $(NAME) $^ -framework OpenGL -framework AppKit
+	$(CC) $(CCFLAGS)  $(DEBUG) src/libft/libft.a glfw-3.3.8/build3/src/libglfw3.a   -o $(NAME) $^ -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
 
 $(OBJ): %.o : $(SRCDIR)/%.c $(DEPSDIR)/$(DEPS)
 	$(CC) $(CCFLAGS) -I $(DEPSDIR) -I $(LIBDIR) $(DEBUG) -c -o $@ $<
